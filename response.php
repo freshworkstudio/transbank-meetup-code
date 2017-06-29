@@ -16,8 +16,9 @@ $response = $plus->getTransactionResult();
 $plus->acknowledgeTransaction();
 
 //Usted no lo haga...
-$_SESSION['buyOrder'] = $response->buyOrder;
+session_start();
+$_SESSION['tbkResponse'] = json_encode($response);
 
 //Redirect back to Webpay Flow and then to the thanks page
-return RedirectorHelper::redirectBackNormal($response->urlRedirection);
+echo RedirectorHelper::redirectBackNormal($response->urlRedirection);
 
